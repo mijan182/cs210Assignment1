@@ -1,12 +1,12 @@
 #include "assignment1.h"
 
-// Default constructor: empty matrix
+//Default constructor: empty matrix
 MatrixType::MatrixType() {
     values.numRows = 0;
     values.numCols = 0;
 }
 
-// Initialized constructor
+//Initialized constructor
 MatrixType::MatrixType(unsigned int numRows, unsigned int numCols, int matrixValues[MAX_ROWS][MAX_COLS]) {
     values.numRows = numRows;
     values.numCols = numCols;
@@ -17,12 +17,16 @@ MatrixType::MatrixType(unsigned int numRows, unsigned int numCols, int matrixVal
     }
 }
 
+
+//setters
+//asks for size of matrix input
 void MatrixType::SetSize() {
     cout << "A matrix has been created. Enter the number of rows and columns for this new matrix:" << endl;
     cin >> values.numRows;
     cin >> values.numCols;
 }
 
+//asks for value input
 void MatrixType::SetValues() {
     cout << "Enter the values:" << endl;
     for (unsigned int i = 0; i < values.numRows; i++) {
@@ -32,6 +36,7 @@ void MatrixType::SetValues() {
     }
 }
 
+//prints the matrix
 void MatrixType::PrintValues() {
     for (unsigned int i = 0; i < values.numRows; i++) {
         for (unsigned int j = 0; j < values.numCols; j++) {
@@ -41,14 +46,20 @@ void MatrixType::PrintValues() {
     }
 }
 
+
+//getters
+//get rows
 unsigned int MatrixType::GetRows() {
     return values.numRows;
 }
 
+//get column
 unsigned int MatrixType::GetColumns() {
     return values.numCols;
 }
 
+
+//gets the value of the rows and columsn
 int MatrixType::GetValue(unsigned int row, unsigned int col) {
     if (row < values.numRows && col < values.numCols) {
         return values.matrixValues[row][col];
@@ -56,7 +67,8 @@ int MatrixType::GetValue(unsigned int row, unsigned int col) {
     return 0;
 }
 
-// --- Operation Functions ---
+//operator functions
+//add and subtract
 MatrixType Add(MatrixType matrix1, MatrixType matrix2) {
     int resultArr[MAX_ROWS][MAX_COLS] = {0};
     for (unsigned int i = 0; i < matrix1.GetRows(); i++) {
@@ -77,6 +89,7 @@ MatrixType Sub(MatrixType matrix1, MatrixType matrix2) {
     return MatrixType(matrix1.GetRows(), matrix1.GetColumns(), resultArr);
 }
 
+//multiplication - needs k
 MatrixType Multi(MatrixType matrix1, MatrixType matrix2) {
     int resultArr[MAX_ROWS][MAX_COLS] = {0};
     for (unsigned int i = 0; i < matrix1.GetRows(); i++) {
@@ -89,21 +102,24 @@ MatrixType Multi(MatrixType matrix1, MatrixType matrix2) {
     return MatrixType(matrix1.GetRows(), matrix2.GetColumns(), resultArr);
 }
 
-// --- Compatibility Functions ---
+//compatibility
+//addsub = compares both matrices by both rows and cols together
 bool AddSubCompatible(MatrixNode *matrix1, MatrixNode *matrix2) {
     return (matrix1->matrix.GetRows() == matrix2->matrix.GetRows() &&
             matrix1->matrix.GetColumns() == matrix2->matrix.GetColumns());
 }
 
+//multi = only compares 1st matrix columns and 2nd matrix rows
 bool MultiCompatible(MatrixNode *matrix1, MatrixNode *matrix2) {
     return (matrix1->matrix.GetColumns() == matrix2->matrix.GetRows());
 }
 
-// --- Matrix List Class Implementation ---
+//matrix list class implememntation
 Matrix::Matrix() {
     head = nullptr;
 }
 
+//get length of the matrix list
 unsigned int Matrix::GetLength() {
     unsigned int count = 0;
     MatrixNode *current = head;
@@ -114,6 +130,7 @@ unsigned int Matrix::GetLength() {
     return count;
 }
 
+//find specific matrix
 MatrixNode *Matrix::FindNode(int n) {
     if (n < 1 || n > GetLength()) return nullptr;
     MatrixNode *current = head;
@@ -123,6 +140,7 @@ MatrixNode *Matrix::FindNode(int n) {
     return current;
 }
 
+//print matrix
 void Matrix::Print() {
     if (head == nullptr) {
         cout << "No matrices in the list." << endl;
@@ -139,6 +157,7 @@ void Matrix::Print() {
     }
 }
 
+//inserting new matrix in first after computation
 void Matrix::Insert() {
     MatrixType newMatrix;
     newMatrix.SetSize();
@@ -150,7 +169,7 @@ void Matrix::Insert() {
     head = newNode;
 }
 
-// --- Wrapper Functions for List Operations ---
+//wrapper for operation
 MatrixNode *Add(MatrixType matrix1, MatrixType *matrix2) {
     MatrixNode *newNode = new MatrixNode;
     newNode->matrix = Add(matrix1, *matrix2);

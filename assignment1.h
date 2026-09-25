@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+//Jana Marie Reyes
+//September 2026
+//200548478
+
 const unsigned int MAX_ROWS = 10;
 const unsigned int MAX_COLS = 10;
 

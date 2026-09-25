@@ -1,5 +1,9 @@
 #include "assignment1.h"
 
+//Jana Marie Reyes
+//September 2026
+//200548478
+
 //Default constructor: empty matrix
 MatrixType::MatrixType() {
     values.numRows = 0;

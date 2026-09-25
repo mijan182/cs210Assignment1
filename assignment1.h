@@ -7,14 +7,14 @@ using namespace std;
 const unsigned int MAX_ROWS = 10;
 const unsigned int MAX_COLS = 10;
 
-// --- Struct for matrix values ---
+//struct for matrix values
 struct MatrixValues {
     unsigned int numRows;
     unsigned int numCols;
     int matrixValues[MAX_ROWS][MAX_COLS];
 };
 
-// --- MatrixType Class ---
+//MatrixType class
 class MatrixType {
     MatrixValues values;
 
@@ -29,12 +29,12 @@ public:
     int GetValue(unsigned int row, unsigned int col);
 };
 
-// --- Operation Function Prototypes ---
+//operation function prototypes
 MatrixType Add(MatrixType matrix1, MatrixType matrix2);
 MatrixType Sub(MatrixType matrix1, MatrixType matrix2);
 MatrixType Multi(MatrixType matrix1, MatrixType matrix2);
 
-// --- Linked List Node & Compatibility ---
+//link list & compatibility
 struct MatrixNode {
     MatrixType matrix;
     MatrixNode *next;
@@ -43,7 +43,7 @@ struct MatrixNode {
 bool AddSubCompatible(MatrixNode *matrix1, MatrixNode *matrix2);
 bool MultiCompatible(MatrixNode *matrix1, MatrixNode *matrix2);
 
-// --- Matrix List Class ---
+//matrix link class
 class Matrix {
 public:
     MatrixNode *head; 
@@ -54,7 +54,7 @@ public:
     void Insert();
 };
 
-// --- Wrapper Function Prototypes ---
+//wrapper prototypes
 MatrixNode *Add(MatrixType matrix1, MatrixType *matrix2);
 MatrixNode *Sub(MatrixType matrix1, MatrixType *matrix2);
 MatrixNode *Multi(MatrixType matrix1, MatrixType *matrix2);
